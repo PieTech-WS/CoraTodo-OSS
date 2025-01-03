@@ -1,0 +1,46 @@
+<template>
+    <div class="page">
+      <text class="time">{{currentTime}}</text>
+      <text class="text1">添加自定义预设</text>
+      <div class="textgroup">
+        <text class="text2">轻松添加</text>
+        <text class="text3">一天任务</text>
+      </div>
+      <image src="../../common/book.png" class="book_icon"></image>
+      <image src="../../common/common/Buttons _NextButton@1x.png" class="next_button" onclick="nextpage()"></image>
+    </div>
+  </template>
+  
+  <script>
+  import router from '@system.router'
+   export default {
+    private: {
+      currentTime: ''
+    },
+    onInit() {
+      this.updateTime();
+      setInterval(() => {
+        this.updateTime();
+      }, 1000); // 更新时间间隔
+    },
+    updateTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      this.currentTime = `${hours}:${minutes}`;
+    },
+    nextpage() {
+      router.replace(
+        {
+          uri: '/pages/oobe4'
+        }
+      )
+    }
+   }
+  </script>
+  
+  <style lang="less">
+  @import '../../common/style/oobe3.less';
+  </style>

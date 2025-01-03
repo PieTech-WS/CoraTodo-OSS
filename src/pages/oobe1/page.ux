@@ -1,0 +1,42 @@
+<template>
+  <div class="page">
+    <text class="time">{{currentTime}}</text>
+    <text class="text1">欢迎使用</text>
+    <text class="text2">Cora待办NEXT</text>
+    <image src="../../common/common/Buttons _NextButton@1x.png" class="next_button" onclick="nextpage()"></image>
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+ export default {
+  private: {
+    currentTime: ''
+  },
+  onInit() {
+    this.updateTime();
+    setInterval(() => {
+      this.updateTime();
+    }, 1000); // 更新时间间隔
+  },
+  updateTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    this.currentTime = `${hours}:${minutes}`;
+  },
+  nextpage() {
+    router.replace(
+      {
+        uri: '/pages/oobe2'
+      }
+    )
+  }
+ }
+</script>
+
+<style lang="less">
+@import '../../common/style/oobe1.less';
+</style>

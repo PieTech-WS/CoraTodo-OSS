@@ -1,0 +1,47 @@
+<template>
+    <div class="page">
+      <text class="time">{{currentTime}}</text>
+      <text class="text1">使用输入法</text>
+      <div class="textgroup">
+        <text class="text2">无需手机</text>
+        <text class="text3">即可添加待办</text>
+        
+      </div>
+      <image src="../../common/phoneless.png" class="phoneless_image"></image>
+      <image src="../../common/common/Buttons _NextButton@1x.png" class="next_button" onclick="nextpage()"></image>
+    </div>
+  </template>
+  
+  <script>
+  import router from '@system.router'
+   export default {
+    private: {
+      currentTime: ''
+    },
+    onInit() {
+      this.updateTime();
+      setInterval(() => {
+        this.updateTime();
+      }, 1000); // 更新时间间隔
+    },
+    updateTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      this.currentTime = `${hours}:${minutes}`;
+    },
+    nextpage() {
+      router.replace(
+        {
+          uri: '/pages/oobe3'
+        }
+      )
+    }
+   }
+  </script>
+  
+  <style lang="less">
+  @import '../../common/style/oobe2.less';
+  </style>

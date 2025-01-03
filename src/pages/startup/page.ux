@@ -1,0 +1,61 @@
+<template>
+  <div class="page">
+    <text class="debugFlag" show="{{debugMode}}">debugMode</text>
+    <image src="../../common/logonext2.png" class="logo"></image>
+  </div>
+</template>
+
+<script>
+import storage from '@system.storage';
+import router from '@system.router';
+import prompt from '@system.prompt';
+ export default {
+  private: {
+    "AppMode": 1,
+    "debugMode": false
+  },
+  onInit() {
+    if(this.$app.$def.AppStartUpMode == 0){
+      this.debugMode = true
+    };
+    this.oobeCheck()
+  },
+  oobeCheck() {
+    prompt.showToast({
+      message: "running check"
+    })
+    storage.get({
+    key: "inited",
+    success: (data, code) => {
+      if (data != 'inited'){
+        this.oobe()
+      }else{
+        setTimeout(this.index(), 2000);
+      }
+    },
+    fail: (data, code) => {
+      this.oobe()
+    }
+  })
+  },
+  oobe() {
+    if(this.debugMode==true){
+        prompt.showToast({
+          message: "Starting OOBE"
+        })
+      };
+      router.replace({
+        uri: "/pages/oobe1"
+      })
+  },
+  index() {
+    router.replace({
+          uri: '/pages/index'
+      })
+  }
+ }
+</script>
+
+<style lang="less">
+@import '../../common/style/startup.less';
+</style>

@@ -1,0 +1,58 @@
+{
+  "package": "com.cora.wear.todo.next",
+  "name": "Cora待办",
+  "versionName": "2.0.0",
+  "versionCode": 10,
+  "minPlatformVersion": 1000,
+  "icon": "/common/logonext@1x.png",
+  "deviceTypeList": [
+    "watch"
+  ],
+  "features": [
+    {
+      "name": "system.router"
+    },
+    {
+      "name": "system.file"
+    },
+    {
+      "name": "system.storage"
+    },
+    {
+      "name": "system.prompt"
+    }
+  ],
+  "config": {
+    "logLevel": "log",
+    "designWidth": 192
+  },
+  "router": {
+    "entry": "pages/startup",
+    "pages": {
+      "pages/startup":{
+        "component": "page"
+      },
+      "pages/index": {
+        "component": "index"
+      },
+      "pages/oobe1": {
+        "component": "page"
+      },
+      "pages/oobe2": {
+        "component": "page"
+      },
+      "pages/oobe3": {
+        "component": "page"
+      },
+      "pages/oobe4": {
+        "component": "page"
+      },
+      "pages/create":{
+        "component": "page"
+      },
+      "pages/about":{
+        "component": "page"
+      }
+    }
+  }
+}

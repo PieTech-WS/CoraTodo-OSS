@@ -1,0 +1,67 @@
+<template>
+  <div class="page">
+    <text class="time">{{currentTime}}</text>
+    <text class="title" onclick="about()">Cora待办</text>
+    <div class="buttons">
+      <image src="../../common/add@1x@1x.png" class="add_button" onclick="create()"></image>
+      <image src="../../common/settings@1x@1x.png" class="settings_button"></image>
+    </div>
+  </div>
+</template>
+
+<script>
+import file from '@system.file'
+import router from '@system.router'
+ export default {
+  private: {
+    currentTime: ""
+  },
+  onInit(){
+    this.checkfile()
+    this.updateTime();
+      setInterval(() => {
+        this.updateTime();
+      }, 1000); // 更新时间间隔
+  },
+  updateTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    //@ts-ignore
+    hours = hours < 10 ? "0" + hours : hours;
+    //@ts-ignore
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    this.currentTime = `${hours}:${minutes}`;
+},
+  
+  checkfile() {
+    file.access({
+      uri: 'internal://files/cora-todolist.json.txt',
+      success: function(data) {
+        console.log(`file availiable`)
+      },
+      fail: function(data, code) {
+        console.log(`handling fail, code = ${code}`)
+        router.replace({
+          uri: "/pages/oobe1"
+        })
+      }
+    }
+    )
+  },
+  create() {
+    router.push({
+      uri: '/pages/create'
+    })
+  },
+  about() {
+    router.push({
+      uri: '/pages/about'
+    })
+  }
+ }
+</script>
+
+<style lang="less">
+@import '../../common/style/homepage.less';
+</style>

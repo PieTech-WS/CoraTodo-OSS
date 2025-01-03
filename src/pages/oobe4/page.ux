@@ -1,0 +1,72 @@
+<template>
+    <div class="page">
+        <text class="time">{{ currentTime }}</text>
+        <text style="top: 1px; position: relative; color: white">Initializing</text>
+    </div>
+</template>
+
+<script>
+import file from '@system.file';
+import storage from '@system.storage';
+import router from '@system.router';
+export default {
+  private: {
+    currentTime: ""
+  },
+  onInit() {
+    this.updateTime()
+    setInterval(() => {
+      this.updateTime()
+    }, 1000) // 更新时间间隔
+    this.init()
+  },
+  updateTime() {
+    const now = new Date()
+    let hours = now.getHours()
+    let minutes = now.getMinutes()
+    hours = hours < 10 ? "0" + hours : hours
+    minutes = minutes < 10 ? "0" + minutes : minutes
+    this.currentTime = `${hours}:${minutes}`
+  },
+  nextpage() {
+    router.replace({
+      uri: "/pages/index"
+    })
+  },
+  init() {
+    file.writeText({
+          uri: 'internal://files/cora-todolist.json.txt',
+          text: '{}',
+          success: () => {
+            console.log('保存成功');
+          },
+          fail: (data, code) => {
+            console.log(`handling fail, code = ${code}`);
+            prompt.showToast({
+              message: `初始化错误, 错误码${code}`,
+              duration: 1500
+            })
+          }
+        });
+    storage.set({
+      key: 'app_version',
+      value: '2.0.1'
+    });
+    storage.set({
+      key: 'todojs_version',
+      value: '0.1.0-quickjs-vela-quickapp',
+      success: () => {
+        this.nextpage()
+      }
+    });
+    storage.set({
+      key: 'inited',
+      value: 'inited'
+    })
+  }
+}
+</script>
+
+<style lang="less">
+  @import '../../common/style/oobe3.less';
+</style>
