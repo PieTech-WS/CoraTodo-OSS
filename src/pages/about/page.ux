@@ -2,7 +2,7 @@
   <div>
     <text class="time">{{currentTime}}</text>
     <image src="../../common/about@1x.png" class="about"></image>
-    <image src="../../common/done@1x.png" class="button" onclick="back()"></image>
+    <image src="../../common/images/common/done@1x.png" class="button" onclick="back()"></image>
   </div>
 </template>
 
