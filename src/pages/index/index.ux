@@ -1,3 +1,4 @@
+<import name="todoItem" src="../../common/compoenents/todoitem/todoItem.ux"></import>
 <template>
   <div class="page">
     <text class="time">{{currentTime}}</text>
@@ -6,6 +7,7 @@
       <image src="../../common/images/homepage/add@1x@1x.png" class="add_button" onclick="create()"></image>
       <image src="../../common/images/homepage/settings@1x@1x.png" class="settings_button"></image>
     </div>
+    <todoItem class="test"></todoItem>
   </div>
 </template>
 
@@ -64,4 +66,9 @@ import router from '@system.router'
 
 <style lang="less">
 @import '../../common/style/homepage.less';
+.test {
+  position: static;
+  top: 20;
+  z-index: 4;
+}
 </style>

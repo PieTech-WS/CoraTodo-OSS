@@ -1,3 +1,4 @@
+<import name="inputmethod" src="../../common/compoenents/InputMethod/InputMethod.ux"></import>
 <template>
   <div class="page">
     <text class="time">{{currentTime}}</text>
@@ -22,6 +23,10 @@
         </div>
       </div>
     </div>
+    <inputmethod
+      hide=false
+      maxlength="5"
+    ></inputmethod>
   </div>
 </template>
 
