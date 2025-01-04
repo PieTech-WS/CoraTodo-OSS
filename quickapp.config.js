@@ -13,6 +13,12 @@ module.exports = {
             ],
         },
     },
+    resolve: {
+        alias: {
+            '@components': path.resolve(__dirname, 'src/components'),
+            '../../common/style': path.resolve(__dirname, 'src/common/style')
+        }
+    },
     cli: {
         "enable-custom-component": true,
         "enable-jsc": true,
