@@ -6,8 +6,8 @@
         <text class="text2">轻松添加</text>
         <text class="text3">一天任务</text>
       </div>
-      <image src="../../common/book.png" class="book_icon"></image>
-      <image src="../../common/common/Buttons _NextButton@1x.png" class="next_button" onclick="nextpage()"></image>
+      <image src="../../common/images/oobe/book.png" class="book_icon"></image>
+      <image src="../../common/images/common/Buttons_NextButton@1x.png" class="next_button" onclick="nextpage()"></image>
     </div>
   </template>
   

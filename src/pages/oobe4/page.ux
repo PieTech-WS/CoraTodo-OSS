@@ -9,6 +9,7 @@
 import file from '@system.file';
 import storage from '@system.storage';
 import router from '@system.router';
+import { init } from '../../ts/oobe/init';
 export default {
   private: {
     currentTime: ""
@@ -18,7 +19,7 @@ export default {
     setInterval(() => {
       this.updateTime()
     }, 1000) // 更新时间间隔
-    this.init()
+    init()
   },
   updateTime() {
     const now = new Date()
@@ -28,11 +29,7 @@ export default {
     minutes = minutes < 10 ? "0" + minutes : minutes
     this.currentTime = `${hours}:${minutes}`
   },
-  nextpage() {
-    router.replace({
-      uri: "/pages/index"
-    })
-  },
+  
   init() {
     file.writeText({
           uri: 'internal://files/cora-todolist.json.txt',

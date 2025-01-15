@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class="page">
     <text class="time">{{currentTime}}</text>
-    <image src="../../common/about@1x.png" class="about"></image>
-    <image src="../../common/done@1x.png" class="button" onclick="back()"></image>
+    <text class="title">关于</text>
+    <image src="../../common/images/about/TitleCard@1x.png" class="img1"></image>
+    <image src="../../common/images/about/info@1x.png" class="img2"></image>
+    <image src="../../common/images/common/done@1x.png" class="button" onclick="back()"></image>
   </div>
 </template>
 
@@ -38,18 +40,5 @@ import router from '@system.router'
 </script>
 
 <style lang="less">
-@import '../../common/style/common/time.less';
-.button {
-    position: absolute;
-    left: 55px;
-    top: 567px;
-    width: 42.71%;
-    height: 12.06%;
-}
-.about {
-  top: 0px;
-  left: 0px;
-  width: 192px;
-  height: 680px;
-}
+@import '../../common/style/about.less';
 </style>

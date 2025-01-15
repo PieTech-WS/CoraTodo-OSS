@@ -7,8 +7,8 @@
         <text class="text3">即可添加待办</text>
         
       </div>
-      <image src="../../common/phoneless.png" class="phoneless_image"></image>
-      <image src="../../common/common/Buttons _NextButton@1x.png" class="next_button" onclick="nextpage()"></image>
+      <image src="../../common/images/oobe/phoneless.png" class="phoneless_image"></image>
+      <image src="../../common/images/common/Buttons_NextButton@1x.png" class="next_button" onclick="nextpage()"></image>
     </div>
   </template>
   

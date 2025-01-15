@@ -3,7 +3,7 @@
     <text class="time">{{currentTime}}</text>
     <text class="text1">欢迎使用</text>
     <text class="text2">Cora待办NEXT</text>
-    <image src="../../common/common/Buttons _NextButton@1x.png" class="next_button" onclick="nextpage()"></image>
+    <image src="../../common/images/common/Buttons_NextButton@1x.png" class="next_button" onclick="nextpage()"></image>
   </div>
 </template>
 
