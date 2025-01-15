@@ -3,8 +3,8 @@
     <text class="time">{{currentTime}}</text>
     <text class="title" onclick="about()">Cora待办</text>
     <div class="buttons">
-      <image src="../../common/add@1x@1x.png" class="add_button" onclick="create()"></image>
-      <image src="../../common/settings@1x@1x.png" class="settings_button"></image>
+      <image src="../../common/images/homepage/add@1x@1x.png" class="add_button" onclick="create()"></image>
+      <image src="../../common/images/homepage/settings@1x@1x.png" class="settings_button"></image>
     </div>
   </div>
 </template>

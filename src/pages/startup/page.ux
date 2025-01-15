@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <text class="debugFlag" show="{{debugMode}}">debugMode</text>
-    <image src="../../common/logonext2.png" class="logo"></image>
+    <image src="../../common/logonext_nobackground@1x.png" class="logo"></image>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ import prompt from '@system.prompt';
       if (data != 'inited'){
         this.oobe()
       }else{
-        setTimeout(this.index(), 2000);
+        setTimeout(this.index(), 4000);
       }
     },
     fail: (data, code) => {
