@@ -4,8 +4,8 @@
     <text class="time">{{currentTime}}</text>
     <text class="title" onclick="about()">Cora待办</text>
     <div class="buttons">
-      <image src="../../common/images/homepage/add@1x@1x.png" class="add_button" onclick="create()"></image>
-      <image src="../../common/images/homepage/settings@1x@1x.png" class="settings_button"></image>
+      <image src="../../common/images/homepage/add@1x@1x.png" class="add_button {{btn_anim_inter1}}" onclick="create()" @touchstart="addbtn_scale0_7()" @touchend="addbtn_scale1()"></image>
+      <image src="../../common/images/homepage/settings@1x@1x.png" class="settings_button {{btn_anim_inter2}}"></image>
     </div>
     <todoItem class="test"></todoItem>
   </div>
@@ -16,7 +16,9 @@ import file from '@system.file'
 import router from '@system.router'
  export default {
   private: {
-    currentTime: ""
+    currentTime: "",
+    btn_anim_inter1: "",
+    btn_anim_inter2: ""
   },
   onInit(){
     this.checkfile()
@@ -60,12 +62,20 @@ import router from '@system.router'
     router.push({
       uri: '/pages/about'
     })
+  },
+  // Button Animation
+  addbtn_scale0_7() {
+    this.btn_anim_inter1 = "btn_scale_0_7"
+  },
+  addbtn_scale1() {
+    this.btn_anim_inter1 = "btn_scale_1"
   }
  }
 </script>
 
 <style lang="less">
 @import '../../common/style/homepage.less';
+@import '../../common/style/less_animation/homepage.less';
 .test {
   position: static;
   top: 20;
