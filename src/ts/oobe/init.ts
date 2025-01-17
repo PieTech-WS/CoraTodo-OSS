@@ -1,7 +1,8 @@
 import { file, prompt, storage, router } from '../exports'
+import appvalue from '../Values';
 export function init() {
     file.writeText({
-        uri: 'internal://files/cora-todolist.json.txt',
+        uri: appvalue.STORAGE_MAIN,
         text: '{}',
         success: () => {
           console.log('保存成功');

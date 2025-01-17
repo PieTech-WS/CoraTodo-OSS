@@ -1,9 +1,31 @@
 <template>
-  <div class="container"></div>
+    <div class="container">
+        <image src="./image/Widget_BG@1x.png" class="background"></image>
+        <div class="content">
+            <div class="textContentContainer">
+                <marquee scrollamount={{6}} loop={{-1}} class="title">{{name}}</marquee>
+            </div>
+            <image class="checkbox" src="./image/check_box@1x.png"></input>
+        </div>
+    </div>
 </template>
 
 <script>
- export default {}
+ import router from '@system.router';
+ export default {
+  props: ['uuid', 'name'],
+  data: {
+    checkbox_img: './image/check_box@1x.png'
+  },
+  gotoDetail() {
+    router.push({
+      uri: "pages/detail",
+      params: {
+        uuid: this.uuid
+      }
+    })
+  }
+ }
 </script>
 
 <style lang="less">

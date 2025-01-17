@@ -4,7 +4,8 @@
       "esModuleInterop": true,
       "module": "commonjs",
       "target": "es5",
-      "outDir": "./dist"
+      "outDir": "./dist",
+      "typeRoots": ["node_modules/@types", "extra"]
   },
   "include": [
       "src/**/*"

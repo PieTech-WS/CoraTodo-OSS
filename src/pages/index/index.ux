@@ -1,4 +1,4 @@
-<import name="todoItem" src="../../common/compoenents/todoitem/todoItem.ux"></import>
+<import name="todoitem" src="../../common/compoenents/todoitem/todoItem.ux"></import>
 <template>
   <div class="page">
     <text class="time">{{currentTime}}</text>
@@ -7,7 +7,12 @@
       <image src="../../common/images/homepage/add@1x@1x.png" class="add_button {{btn_anim_inter1}}" onclick="create()" @touchstart="addbtn_scale0_7()" @touchend="addbtn_scale1()"></image>
       <image src="../../common/images/homepage/settings@1x@1x.png" class="settings_button {{btn_anim_inter2}}"></image>
     </div>
-    <todoItem class="test"></todoItem>
+    <div class="todoList">
+      <div for="{{(index, item) in todoIDList}}" class="todoItemContainer">
+        <!--TodoList-->
+        <todoitem uuid="A" name={{todoList[item].name}}></todoitem>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,10 +20,22 @@
 import file from '@system.file'
 import router from '@system.router'
  export default {
+  public: {
+    appMode: "",
+    todoList: {
+      "A":{
+        name: '测试测试测试测试',
+        alertTime: '9:18',
+        place: '501'
+      }
+    },
+  },
   private: {
     currentTime: "",
     btn_anim_inter1: "",
-    btn_anim_inter2: ""
+    btn_anim_inter2: "",
+    todoList: {},
+    todoIDList: ['A']
   },
   onInit(){
     this.checkfile()
@@ -69,6 +86,10 @@ import router from '@system.router'
   },
   addbtn_scale1() {
     this.btn_anim_inter1 = "btn_scale_1"
+  },
+  //data setter
+  getTodoItem(uuid) {
+    return todoList[uuid];
   }
  }
 </script>
