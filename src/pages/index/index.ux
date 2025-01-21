@@ -10,7 +10,7 @@
     <div class="todoList">
       <div for="{{(index, item) in todoIDList}}" class="todoItemContainer">
         <!--TodoList-->
-        <todoitem uuid="A" name={{todoList[item].name}}></todoitem>
+        <todoitem uuid="A" name={{todoList['A']}}></todoitem>
       </div>
     </div>
   </div>

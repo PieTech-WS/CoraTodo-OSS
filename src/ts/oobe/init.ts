@@ -1,8 +1,8 @@
 import { file, prompt, storage, router } from '../exports'
-import appvalue from '../Values';
+// import appvalue from '../Values';
 export function init() {
     file.writeText({
-        uri: appvalue.STORAGE_MAIN,
+        uri: 'internal://files/cora-todolist.json.txt',
         text: '{}',
         success: () => {
           console.log('保存成功');
@@ -10,7 +10,7 @@ export function init() {
         fail: (data, code) => {
           console.log(`handling fail, code = ${code}`);
           prompt.showToast({
-            message: `初始化错误, 错误码${code}`,
+            message: `恩情初始化错误, 错误码${code}`,
             duration: 1500
           })
         }

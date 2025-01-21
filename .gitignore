@@ -5,3 +5,7 @@
 /dist
 /build
 .husky/
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vs/CoraToDoNEXT/FileContentIndex/9b375cfc-8dc6-499c-9016-87e2281b57d3.vsidx
+.vs/CoraToDoNEXT/v17/.wsuo
