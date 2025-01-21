@@ -3,7 +3,7 @@
         <image src="./image/Widget_BG@1x.png" class="background"></image>
         <div class="content">
             <div class="textContentContainer">
-                <marquee scrollamount={{20}} loop={{-1}} class="title">{{name}}</marquee>
+                <marquee scrollamount={{30}} loop={{-1}} class="title">{{name}}</marquee>
             </div>
             <image class="checkbox" src="./image/check_box@1x.png"></image>
         </div>
