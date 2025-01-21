@@ -8,9 +8,9 @@
       <image src="../../common/images/homepage/settings@1x@1x.png" class="settings_button {{btn_anim_inter2}}"></image>
     </div>
     <div class="todoList">
-      <div for="{{(index, item) in todoIDList}}" class="todoItemContainer">
+      <div for="{{todoIDList}}" class="todoItemContainer" style="">
         <!--TodoList-->
-        <todoitem uuid="A" name={{todoList['A']}}></todoitem>
+        <todoitem uuid="A" name="{{todoList[$item].name}}"></todoitem>
       </div>
     </div>
   </div>
@@ -22,20 +22,25 @@ import router from '@system.router'
  export default {
   public: {
     appMode: "",
-    todoList: {
-      "A":{
-        name: '测试测试测试测试',
-        alertTime: '9:18',
-        place: '501'
-      }
-    },
+    
   },
   private: {
     currentTime: "",
     btn_anim_inter1: "",
     btn_anim_inter2: "",
     todoList: {},
-    todoIDList: ['A']
+    todoIDList: ['A', 'B'],
+    todoList: {
+      "A":{
+        name: '测试测试测试测试',
+        alertTime: '9:18',
+        place: '501'
+      },
+      "B": {
+        name: 'aaaaaaaaa',
+
+      }
+    },
   },
   onInit(){
     this.checkfile()
