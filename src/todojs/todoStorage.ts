@@ -1,6 +1,6 @@
 import { file } from "../export";
-import appvalue from '../ts/Values';
 
 file.readText({
-    uri: appvalue.STORAGE_MAIN
+    uri: 'internal://files/cora-todolist.json.txt',
+
 })

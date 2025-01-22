@@ -1,11 +1,13 @@
 <template>
-  <div class="page">
-    <text class="time">{{currentTime}}</text>
-    <text class="title">关于</text>
-    <image src="../../common/images/about/TitleCard@1x.png" class="img1"></image>
-    <image src="../../common/images/about/info@1x.png" class="img2"></image>
-    <image src="../../common/images/common/done@1x.png" class="button" onclick="back()"></image>
-  </div>
+    <div class="page">
+        <text class="time">{{currentTime}}</text>
+        <text class="title">关于</text>
+        <scroll class="scrollView" scroll-y=true bounces=true>
+            <image src="../../common/images/about/TitleCard@1x.png" class="img1"></image>
+            <image src="../../common/images/about/info@1x.png" class="img2"></image>
+            <image src="../../common/images/common/done@1x.png" class="button" onclick="back()"></image>
+        </scroll>
+    </div>
 </template>
 
 <script>

@@ -10,7 +10,7 @@ export function init() {
         fail: (data, code) => {
           console.log(`handling fail, code = ${code}`);
           prompt.showToast({
-            message: `恩情初始化错误, 错误码${code}`,
+            message: `初始化错误, 错误码${code}`,
             duration: 1500
           })
         }

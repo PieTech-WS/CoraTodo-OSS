@@ -5,7 +5,11 @@
             <div class="textContentContainer">
                 <marquee scrollamount={{30}} loop={{-1}} class="title">{{name}}</marquee>
             </div>
-            <image class="checkbox" src="./image/check_box@1x.png"></image>
+            <div class="checkbox">
+                <image class="checkbox_innerImage" src="./image/check_box_done@1x.png" if="{{dynCompletedStatus}}" onclick="onCheckboxClicked()"></image>
+                <image class="checkbox_innerImage" src="./image/check_box@1x.png" else onclick="onCheckboxClicked()"></image>
+            </div>
+            
         </div>
     </div>
 </template>
@@ -13,9 +17,19 @@
 <script>
  import router from '@system.router';
  export default {
-  props: ['uuid', 'name'],
+  props: ['uuid', 'name', 'completed'],
   data: {
-    checkbox_img: './image/check_box@1x.png'
+    dynCompletedStatus: false
+  },
+  onInit() {
+    this.dynCompletedStatus = this.completed
+  },
+  onCheckboxClicked() {
+    if(this.dynCompletedStatus){
+        this.dynCompletedStatus = false
+    }else{
+        this.dynCompletedStatus = true
+    }
   },
   gotoDetail() {
     router.push({
