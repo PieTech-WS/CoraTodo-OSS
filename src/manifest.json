@@ -50,6 +50,9 @@
       "pages/create":{
         "component": "page"
       },
+      "pages/date_select":{
+        "component": "page"
+      },
       "pages/about":{
         "component": "page"
       }
