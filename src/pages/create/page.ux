@@ -1,43 +1,62 @@
 <import name="inputmethod" src="../../common/compoenents/InputMethod/InputMethod.ux"></import>
 <template>
-    <scroll class="page" scroll-y="true" bounces="true">
+    <div class="page">
         <text class="time">{{ currentTime }}</text>
         <text class="title">新建待办</text>
-        <div class="inputline inputline1">
-            <text class="innerText">{{ textValue }} {{ indicator }}</text>
-        </div>
-        <div class="options">
-            <div class="chipContainer chip1">
-                <div class="chipShape">
-                    <image src="../../common/images/create/time.png" class="chipIcon"></image>
+        <scroll class="contentView" scroll-y="true" bounces="true">
+            <div class="inputline inputline1" onclick="changeKeyboardVisib()">
+                <marquee class="innerText">{{ inputLineText }} {{ indicator }}</marquee>
+            </div>
+            <div class="options">
+                <div class="chipContainer chip1">
+                    <div class="chipShape">
+                        <image src="../../common/images/create/time.png" class="chipIcon"></image>
+                    </div>
+                </div>
+                <div class="chipContainer chip2" onclick="date_select()">
+                    <div class="chipShape">
+                        <image src="../../common/images/create/alert_date.png" class="chipIcon"></image>
+                    </div>
+                </div>
+                <div class="chipContainer chip4">
+                    <div class="chipShape">
+                        <image src="../../common/images/create/Icon.png" class="chipIcon"></image>
+                    </div>
+                </div>
+                <div class="chipContainer chip3">
+                    <div class="chipShape">
+                        <image src="../../common/images/create/book.png" class="chipIcon"></image>
+                    </div>
                 </div>
             </div>
-            <div class="chipContainer chip2" onclick="date_select()">
-                <div class="chipShape">
-                    <image src="../../common/images/create/alert_date.png" class="chipIcon"></image>
-                </div>
-            </div>
-            <div class="chipContainer chip3">
-                <div class="chipShape">
-                    <image src="../../common/images/create/book.png" class="chipIcon"></image>
-                </div>
-            </div>
-        </div>
-        <inputmethod hide="false" maxlength="5"></inputmethod>
-    </scroll>
+            <inputmethod hide="{{keyboardVisib}}" keyboardtype="QWERTY" maxlength="5" screentype="pill-shaped"></inputmethod>
+            <div class="done_btn"></div>
+        </scroll>
+    </div>
 </template>
 
 <script>
-import router from "@system.router"
+import router from "@system.router";
+import prompt from '@system.prompt';
 export default {
   private: {
-    currentTime: ""
+    currentTime: "",
+    keyboardVisib: true,
+    inputLineText: '',
+    indicator: '',
+    debugMode: ''
   },
   onInit() {
+    if(this.$app.$def.AppStartUpMode == 0){
+      this.debugMode = true
+    };
     this.updateTime()
     setInterval(() => {
       this.updateTime()
     }, 1000) // 更新时间间隔
+    setInterval(() => {
+        this.changeIndicator()
+    }, 600)
   },
   updateTime() {
     const now = new Date()
@@ -53,6 +72,19 @@ export default {
     router.push({
         uri: 'pages/date_select'
     })
+  },
+  changeKeyboardVisib() {
+    this.keyboardVisib = !this.keyboardVisib
+    prompt.showToast({
+        message:'KeyboardVisibilityChanged'
+    })
+  },
+  changeIndicator() {
+    if (this.indicator == ''){
+        this.indicator = '|'
+    }else {
+        this.indicator = ''
+    }
   }
 }
 </script>

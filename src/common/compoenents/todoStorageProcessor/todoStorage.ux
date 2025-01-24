@@ -1,0 +1,23 @@
+<script>
+import file from '@system.file';
+import prompt from '@system.prompt';
+ export default {
+    props:['uri', 'debugMode'],
+    data:{
+        
+    },
+    onInit() {
+        if(mode){
+            prompt.showToast({
+                message: 'todoStorage组件初始化'
+            });
+            file.readText({
+                uri: this.uri,
+                success: (text) => {
+
+                }
+            })
+        }
+    }
+ }
+</script>

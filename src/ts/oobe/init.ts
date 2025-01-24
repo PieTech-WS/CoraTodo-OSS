@@ -3,7 +3,7 @@ import { file, prompt, storage, router } from '../exports'
 export function init() {
     file.writeText({
         uri: 'internal://files/cora-todolist.json.txt',
-        text: '{}',
+        text: '{usedID:[],todo:{}}',
         success: () => {
           console.log('保存成功');
         },
