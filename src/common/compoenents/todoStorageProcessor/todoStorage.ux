@@ -4,20 +4,42 @@ import prompt from '@system.prompt';
  export default {
     props:['uri', 'debugMode'],
     data:{
-        
+        todoData: {},
+        uuid_cache: ''
     },
     onInit() {
-        if(mode){
-            prompt.showToast({
-                message: 'todoStorage组件初始化'
-            });
-            file.readText({
+        console.log('todoStorage 组件初始化')
+        file.readText({
                 uri: this.uri,
                 success: (text) => {
-
+                    this.todoData = JSON.parse(text)
+                    prompt.showToast({
+                        message: 'Todo data获取成功'
+                    })
                 }
-            })
+            });
+        this.$dispatch('gotData',{
+            todoData: this.todoData
+        })
+    },
+    addTodo({
+        todoContent
+    }) {
+        
+    },
+    uuidAdd() {
+        this.uuid_cache = generateUUID();
+        if(this.uuid_cache in this.todoData["usedID"]){
+            return uuidAdd()
+        }else{
+            return this.uuid_cache;
         }
     }
- }
+ };
+ function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
 </script>

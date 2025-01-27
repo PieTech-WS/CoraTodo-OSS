@@ -1,89 +1,103 @@
-<import name="todoitem" src="../../common/compoenents/todoitem/todoItem.ux"></import>
+<import 
+name="todoitem" 
+src="../../common/compoenents/todoitem/todoItem.ux"
+>
+</import>
 <template>
-  <div class="page">
-    <text class="time">{{currentTime}}</text>
-    <text class="title" onclick="about()">Cora待办</text>
-    <div class="buttons">
-      <image src="../../common/images/homepage/add@1x@1x.png" class="add_button btn_transition {{btn_anim_inter1}}" onclick="create()" @touchstart="addbtn_scale0_7()" @touchend="addbtn_scale1()"></image>
-      <image src="../../common/images/homepage/settings@1x@1x.png" class="settings_button btn_transition {{btn_anim_inter2}}"></image>
+    <div class="page">
+        <text class="time">{{ currentTime }}</text>
+        <text class="title" onclick="about()">Cora待办</text>
+        <div class="buttons">
+            <image src="../../common/images/homepage/add@1x@1x.png" class="add_button btn_transition {{btn_anim_inter1}}"
+                onclick="create()" @touchstart="addbtn_scale0_7()" @touchend="addbtn_scale1()"></image>
+            <image src="../../common/images/homepage/settings@1x@1x.png"
+                class="settings_button btn_transition {{btn_anim_inter2}}"></image>
+        </div>
+        <scroll class="todoList" scroll-y="true" bounces="true">
+            <div for="{{todoIDList}}" class="todoItemContainer" style="">
+                <!--TodoList-->
+                <todoitem uuid="A" name="{{todoList[$item].name}}" completed="{{todoList[$item].completed}}"></todoitem>
+            </div>
+        </scroll>
     </div>
-    <scroll class="todoList" scroll-y=true bounces=true>
-      <div for="{{todoIDList}}" class="todoItemContainer" style="">
-        <!--TodoList-->
-        <todoitem uuid="A" name="{{todoList[$item].name}}" completed="{{todoList[$item].completed}}"></todoitem>
-      </div>
-    </scroll>
-  </div>
 </template>
 
 <script>
-import file from '@system.file'
-import router from '@system.router'
- export default {
+import file from "@system.file";
+import router from "@system.router";
+import uuidGen from './utils';
+import prompt from '@system.prompt';
+export default {
   public: {
-    appMode: "",
-    
+    appMode: ""
   },
   private: {
     currentTime: "",
     btn_anim_inter1: "",
     btn_anim_inter2: "",
     todoList: {},
-    todoIDList: ['A', 'B'],
+    todoIDList: ["A", "B"],
     todoList: {
-      "A":{
-        name: '测试测试测试测试',
-        alertTime: '9:18',
-        place: '501',
+      A: {
+        name: "测试测试测试测试",
+        alertTime: "9:18",
+        place: "501",
         completed: true
       },
-      "B": {
-        name: 'aaaaaaaaa',
+      B: {
+        name: "aaaaaaaaa",
         completed: false
       }
     },
+    todoData: {},
+    uuid_cache: "",
+    uri: "internal://files/cora-todolist.json.txt",
+    debugMode: false
   },
-  onInit(){
-    this.checkfile()
+  onInit() {
+    if(this.$app.$def.AppStartUpMode == 0){
+      this.debugMode = true
+    };
+    this.checkfile();
     this.updateTime();
-      setInterval(() => {
-        this.updateTime();
-      }, 1000); // 更新时间间隔
+    setInterval(() => {
+      this.updateTime()
+    }, 1000); // 更新时间间隔
+    this.todojs_todoStorage_DataGetter()
   },
   updateTime() {
-    const now = new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
+    const now = new Date()
+    let hours = now.getHours()
+    let minutes = now.getMinutes()
     //@ts-ignore
-    hours = hours < 10 ? "0" + hours : hours;
+    hours = hours < 10 ? "0" + hours : hours
     //@ts-ignore
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    this.currentTime = `${hours}:${minutes}`;
-},
-  
+    minutes = minutes < 10 ? "0" + minutes : minutes
+    this.currentTime = `${hours}:${minutes}`
+  },
+
   checkfile() {
     file.access({
-      uri: 'internal://files/cora-todolist.json.txt',
-      success: function(data) {
+      uri: "internal://files/cora-todolist.json.txt",
+      success: function (data) {
         console.log(`file availiable`)
       },
-      fail: function(data, code) {
+      fail: function (data, code) {
         console.log(`handling fail, code = ${code}`)
         router.replace({
           uri: "/pages/oobe1"
         })
       }
-    }
-    )
+    })
   },
   create() {
     router.push({
-      uri: '/pages/create'
+      uri: "/pages/create"
     })
   },
   about() {
     router.push({
-      uri: '/pages/about'
+      uri: "/pages/about"
     })
   },
   // Button Animation
@@ -95,17 +109,35 @@ import router from '@system.router'
   },
   //data setter
   getTodoItem(uuid) {
-    return todoList[uuid];
+    return todoList[uuid]
+  },
+  //DataGetter
+  todojs_todoStorage_DataGetter() {
+    file.readText({
+      uri: "internal://files/cora-todolist.json.txt",
+      success: (obj) => {
+        this.todoData = obj.text
+        if(this.debugMode){
+            prompt.showToast({
+                message: "Todo data获取成功" + JSON.stringify(this.todoData),
+                duration: 10000
+            })
+        }
+      }
+    })
+  },
+  uuidAdd() {
+    this.uuid_cache = uuidGen()
+    if (this.uuid_cache in this.todoData["usedID"]) {
+      return uuidAdd()
+    } else {
+      return this.uuid_cache
+    }
   }
- }
+}
 </script>
 
 <style lang="less">
-@import '../../common/style/homepage.less';
-@import '../../common/style/less_animation/homepage.less';
-.test {
-  position: static;
-  top: 20;
-  z-index: 4;
-}
+@import "../../common/style/homepage.less";
+@import "../../common/style/less_animation/homepage.less";
 </style>

@@ -1,5 +1,5 @@
 <script>
-import storage from '@system.storage'
+import file from '@system.file';
 export default {
   onCreate() {
     console.log("app created")
@@ -7,6 +7,6 @@ export default {
   onDestroy() {
     console.log("app destroyed")
   },
-  AppStartUpMode: 0
+  AppStartUpMode: 0,
 }
 </script>

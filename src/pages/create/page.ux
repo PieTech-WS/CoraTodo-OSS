@@ -67,7 +67,7 @@ export default {
     //@ts-ignore
     minutes = minutes < 10 ? "0" + minutes : minutes
     this.currentTime = `${hours}:${minutes}`
-  },
+},
   date_select() {
     router.push({
         uri: 'pages/date_select'
